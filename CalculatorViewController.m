@@ -39,36 +39,28 @@
      [self checkCalculatorState];
      
      _calc.sign = '/';
-    NSNumber * result = [NSNumber numberWithDouble:[_calc calculateNewValue:[_outputField doubleValue]]];
-    [_outputField setStringValue:[result stringValue]];
-    _calc.signUsed = YES;
+    [self performOperation];
 }
 
 - (IBAction)multiply:(id)sender {
     [self checkCalculatorState];
     
     _calc.sign = '*';
-    NSNumber * result = [NSNumber numberWithDouble:[_calc calculateNewValue:[_outputField doubleValue]]];
-    [_outputField setStringValue:[result stringValue]];
-    _calc.signUsed = YES;
+    [self performOperation];
 }
 
 - (IBAction)subtract:(id)sender {
     [self checkCalculatorState];
     
     _calc.sign = '-';
-    NSNumber * result = [NSNumber numberWithDouble:[_calc calculateNewValue:[_outputField doubleValue]]];
-    [_outputField setStringValue:[result stringValue]];
-    _calc.signUsed = YES;
+    [self performOperation];
 }
 
 - (IBAction)add:(id)sender {
     [self checkCalculatorState];
     
     _calc.sign = '+';
-    NSNumber * result = [NSNumber numberWithDouble:[_calc calculateNewValue:[_outputField doubleValue]]];
-    [_outputField setStringValue:[result stringValue]];
-    _calc.signUsed = YES;
+    [self performOperation];
 }
 
 - (IBAction)equals:(id)sender {
@@ -127,5 +119,11 @@
         [_outputField setStringValue:[[_outputField stringValue] stringByAppendingString:[sender title]]];
     else
         [_outputField setStringValue:[sender title]];
+}
+
+-(void)performOperation{
+    NSNumber * result = [NSNumber numberWithDouble:[_calc calculateNewValue:[_outputField doubleValue]]];
+    [_outputField setStringValue:[result stringValue]];
+    _calc.signUsed = YES;
 }
 @end
